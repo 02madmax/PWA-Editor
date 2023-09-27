@@ -21,8 +21,12 @@ module.exports = () => {
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: './src/index.html',
+        template: './index.html',
         title: 'Jate',
+      }),
+      new InjectManifest({
+        swSrc: './src-sw.js',
+        swDest: 'sw.js',
       }),
       new WebpackPwaManifest({
         fingerprints: false,
@@ -35,22 +39,19 @@ module.exports = () => {
         publicPath: '/',
         icons: [
           {
-            src: path.resolve('src/assets/icon.png'),
+            src: path.resolve('src/images/logo.png'),
             sizes: [96, 128, 192, 256, 384, 512],
             destination: path.join('assets', 'icons'),
           },
         ],
       }),
-      new InjectManifest({
-        swSrc: './src-sw.js',
-        swDest: 'sw.js',
-      }),
+      
     ],
 
     module: {
       rules: [
         {
-        test: /\.css$/,
+        test: /\.css$/i,
         use: [
           'style-loader',
           'css-loader',
@@ -63,7 +64,8 @@ module.exports = () => {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env'],
-            plugins: ['@babel/plugin-proposal-object-rest-spread', '@babel/transform_runtime'],
+            plugins: ['@babel/plugin-proposal-object-rest-spread', '@babel/plugin-transform-runtime']
+
           },
         },
       },

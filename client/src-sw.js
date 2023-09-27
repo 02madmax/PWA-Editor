@@ -27,4 +27,18 @@ warmStrategyCache({
 registerRoute(({ request }) => request.mode === 'navigate', pageCache);
 
 // TODO: Implement asset caching
-registerRoute();
+
+// the registerRoute() method takes two arguments: a function and a strategy object that defines how the request should be handled and cached.
+registerRoute(
+  ({ request }) => 
+  ['style', 'script', 'worker']
+  .includes(request.destination),
+  new StateWhileRevalidate({
+    cacheName: 'asset-cache',
+    plugins: [
+      new CacheableResponsePlugin({
+        statuses: [0, 200],
+      }),
+    ],
+  })
+);

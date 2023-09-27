@@ -5,16 +5,18 @@
   "main": "server.js",
   "scripts": {
     "start:dev": "concurrently \"npm run server\" \"npm run client\"",
-    "start": "npm run build && cd server %% node server.js",
+    "start": "npm run build && cd server && node server.js",
     "server": "cd server nodemon server.js --ignore client/",
     "build": "cd client && npm run build",
-    "install": "cd client && npm install && cd server && npm install",
+    "install": "cd server && npm install && cd ../client && npm install",
     "client": "cd client && npm start"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/plugin-transform-runtime": "^7.22.15",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "express": "^4.17.1",
     "if-env": "^1.0.4"
   },
