@@ -41,3 +41,7 @@ For additional questions, contact me:
 - GitHub: [02madmax](https://github.com/02madmax)
 - Email: maxlamthach10@gmail.com
 
+## Links
+Deployed site: https://mad-text-b84a47b6ddd6.herokuapp.com/
+Github repo: https://github.com/02madmax/PWA-Editor
+
